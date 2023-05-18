@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Button, Container } from '@mui/material';
+import { Button } from '@mui/material';
 
 interface TestProps {
   setEI: React.Dispatch<React.SetStateAction<number>>;
@@ -15,7 +15,7 @@ function Main(props: TestProps) {
     <div>
       <Button
         variant="contained"
-        color="success"
+        color="error"
         onClick={() => {
           navigate('/testpage');
           props.setEI(0);

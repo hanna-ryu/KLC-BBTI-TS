@@ -15,6 +15,9 @@ const LayoutContainer = styled.div`
 
 const ContentWrapper = styled.div`
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 function Layout(props: LayoutProps) {

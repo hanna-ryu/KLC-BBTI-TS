@@ -1,11 +1,16 @@
 function Footer() {
   return (
     <>
-      <footer style={{ border: 'solid 5px #b38631' }}>
-        푸터영역입니다.
-        <ul>
-          <li> 제작자 : 김시연, 류한나</li>
-          <li> 저작권 : 어쩌구 저쩌꾸</li>
+      <footer style={{ borderTop: 'solid 2px #b38631', height: '20px' }}>
+        <ul
+          style={{
+            margin: '5px 0',
+            padding: '0',
+            fontSize: '10px',
+            textAlign: 'center',
+          }}
+        >
+          <span>copyright : KoreaLegacyCommittee 김시연, 류한나</span>
         </ul>
       </footer>
     </>

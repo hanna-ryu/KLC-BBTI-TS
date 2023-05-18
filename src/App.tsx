@@ -1,16 +1,54 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useParams,
+  useLocation,
+} from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { Main, Test, Result, Loading } from './components';
 import './App.css';
 import { Layout } from './components/Layout/Layout';
-import { Container } from '@mui/material';
 import { CreateGlobalStyle } from './styles';
 
 function App() {
+  const params = useParams();
+  const location = useLocation();
+
   const [EI, setEI] = useState<number>(0);
   const [SN, setSN] = useState<number>(0);
   const [TF, setTF] = useState<number>(0);
   const [JP, setJP] = useState<number>(0);
+  const [MBTI, setMBTI] = useState<string>('');
+  const [datas, setDatas] = useState<string>('');
+
+  useEffect(() => {
+    let data: string[] = [];
+    if (EI > 0) {
+      data.push('E');
+    } else if (EI < 0) {
+      data.push('I');
+    }
+    if (SN > 0) {
+      data.push('S');
+    } else if (SN < 0) {
+      data.push('N');
+    }
+    if (TF > 0) {
+      data.push('T');
+    } else if (TF < 0) {
+      data.push('F');
+    }
+    if (JP > 0) {
+      data.push('J');
+    } else if (TF < 0) {
+      data.push('P');
+    }
+
+    const joinedData = data.join('');
+    setDatas(joinedData);
+    setMBTI(joinedData);
+  }, [EI, SN, TF, JP, datas]);
 
   return (
     <BrowserRouter>
@@ -39,7 +77,7 @@ function App() {
               }
             />
             <Route path="/loading" element={<Loading />} />
-            <Route path="/resultpage" element={<Result />} />
+            <Route path="/resultpage" element={<Result MBTI={MBTI} />} />
           </Routes>
         </Layout>
       </CreateGlobalStyle>

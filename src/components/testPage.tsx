@@ -39,44 +39,44 @@ function Test(props: TestProps) {
       ans2: 'I성향 대답입니다.',
     },
     4: {
-      ques: 'EI 성향 문제입니다.',
-      ans1: 'E성향 대답입니다.',
-      ans2: 'I성향 대답입니다.',
+      ques: 'SN 성향 문제입니다.',
+      ans1: 'S성향 대답입니다.',
+      ans2: 'N성향 대답입니다.',
     },
     5: {
-      ques: 'EI 성향 문제입니다.',
-      ans1: 'E성향 대답입니다.',
-      ans2: 'I성향 대답입니다.',
+      ques: 'SN 성향 문제입니다.',
+      ans1: 'S성향 대답입니다.',
+      ans2: 'N성향 대답입니다.',
     },
     6: {
-      ques: 'EI 성향 문제입니다.',
-      ans1: 'E성향 대답입니다.',
-      ans2: 'I성향 대답입니다.',
+      ques: 'SN 성향 문제입니다.',
+      ans1: 'S성향 대답입니다.',
+      ans2: 'N성향 대답입니다.',
     },
     7: {
-      ques: 'EI 성향 문제입니다.',
-      ans1: 'E성향 대답입니다.',
-      ans2: 'I성향 대답입니다.',
+      ques: 'TF 성향 문제입니다.',
+      ans1: 'T성향 대답입니다.',
+      ans2: 'F성향 대답입니다.',
     },
     8: {
-      ques: 'EI 성향 문제입니다.',
-      ans1: 'E성향 대답입니다.',
-      ans2: 'I성향 대답입니다.',
+      ques: 'TF 성향 문제입니다.',
+      ans1: 'T성향 대답입니다.',
+      ans2: 'F성향 대답입니다.',
     },
     9: {
-      ques: 'EI 성향 문제입니다.',
-      ans1: 'E성향 대답입니다.',
-      ans2: 'I성향 대답입니다.',
+      ques: 'TF 성향 문제입니다.',
+      ans1: 'T성향 대답입니다.',
+      ans2: 'F성향 대답입니다.',
     },
     10: {
-      ques: 'EI 성향 문제입니다.',
-      ans1: 'E성향 대답입니다.',
-      ans2: 'I성향 대답입니다.',
+      ques: 'JP 성향 문제입니다.',
+      ans1: 'J성향 대답입니다.',
+      ans2: 'P성향 대답입니다.',
     },
     11: {
-      ques: 'EI 성향 문제입니다.',
-      ans1: 'E성향 대답입니다.',
-      ans2: 'I성향 대답입니다.',
+      ques: 'JP 성향 문제입니다.',
+      ans1: 'J성향 대답입니다.',
+      ans2: 'P성향 대답입니다.',
     },
     12: {
       ques: 'EI 성향 문제입니다.',
@@ -96,7 +96,7 @@ function Test(props: TestProps) {
             props.setEI((prevEI) => prevEI + 1);
           } else if (number >= 4 && number <= 6) {
             props.setSN((prevSN) => prevSN + 1);
-          } else if (number >= 7 && number <= 7) {
+          } else if (number >= 7 && number <= 9) {
             props.setTF((prevTF) => prevTF + 1);
           } else if (number >= 10 && number <= 12) {
             props.setJP((prevJP) => prevJP + 1);
@@ -115,7 +115,7 @@ function Test(props: TestProps) {
             props.setEI((prevEI: number) => prevEI - 1);
           } else if (number >= 4 && number <= 6) {
             props.setSN((prevSN: number) => prevSN - 1);
-          } else if (number >= 7 && number <= 7) {
+          } else if (number >= 7 && number <= 9) {
             props.setTF((prevTF: number) => prevTF - 1);
           } else if (number >= 10 && number <= 12) {
             props.setJP((prevJP: number) => prevJP - 1);
