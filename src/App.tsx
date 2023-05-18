@@ -3,7 +3,7 @@ import {
   Routes,
   Route,
   useParams,
-  useLocation,
+  useNavigate,
 } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Main, Test, Result, Loading } from './components';
@@ -12,9 +12,6 @@ import { Layout } from './components/Layout/Layout';
 import { CreateGlobalStyle } from './styles';
 
 function App() {
-  const params = useParams();
-  const location = useLocation();
-
   const [EI, setEI] = useState<number>(0);
   const [SN, setSN] = useState<number>(0);
   const [TF, setTF] = useState<number>(0);
@@ -41,7 +38,7 @@ function App() {
     }
     if (JP > 0) {
       data.push('J');
-    } else if (TF < 0) {
+    } else if (JP < 0) {
       data.push('P');
     }
 
@@ -76,8 +73,8 @@ function App() {
                 />
               }
             />
-            <Route path="/loading" element={<Loading />} />
-            <Route path="/resultpage" element={<Result MBTI={MBTI} />} />
+            <Route path="/loading" element={<Loading MBTI={MBTI} />} />
+            <Route path="/resultpage/:MBTI" element={<Result MBTI={MBTI} />} />
           </Routes>
         </Layout>
       </CreateGlobalStyle>

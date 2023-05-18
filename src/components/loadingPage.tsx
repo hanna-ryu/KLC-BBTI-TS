@@ -1,9 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
-function Loading() {
+interface ResultProps {
+  MBTI: string;
+}
+
+function Loading(props: ResultProps) {
   const navigate = useNavigate();
   setTimeout(() => {
-    navigate('/resultPage');
+    navigate(`/resultPage/${props.MBTI}`);
   }, 1500);
   return (
     <div>

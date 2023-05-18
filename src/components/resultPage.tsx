@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface ResultProps {
   MBTI: string;
@@ -10,6 +10,7 @@ interface Data {
 
 const data: Data = {
   ISTJ: { title: 'ISTJ', cont: 'ESTJ는 아주 강합니다.' },
+  INTP: { title: 'INTP', cont: 'ESTJ는 아주 강합니다.' },
   ISFJ: { title: 'ISFJ', cont: 'ESTJ는 아주 강합니다.' },
   INFJ: { title: 'INFJ', cont: 'ESTJ는 아주 강합니다.' },
   INTJ: { title: 'INTJ', cont: 'ESTJ는 아주 강합니다.' },
@@ -27,13 +28,13 @@ const data: Data = {
 };
 
 function Result(props: ResultProps) {
+  const param: any = useParams();
   const navigate = useNavigate();
 
   return (
     <div>
-      <div>{data[props.MBTI].title}</div>
-      <div>{data[props.MBTI].cont}</div>
-
+      <div>{data[param.MBTI].title}</div>
+      <div>{data[param.MBTI].cont}</div>
       <button
         onClick={() => {
           navigate('/');
