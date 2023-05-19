@@ -6,6 +6,9 @@ interface ResultProps {
 
 function Loading(props: ResultProps) {
   const navigate = useNavigate();
+
+  //여기서 포스트 요청해서 mySQL에  데이터 전송 필요함!!!
+
   setTimeout(() => {
     navigate(`/resultPage/${props.MBTI}`);
   }, 1500);

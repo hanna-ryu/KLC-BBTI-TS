@@ -1,40 +1,44 @@
 import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 interface ResultProps {
   MBTI: string;
+  nickname: string;
 }
-
-interface Data {
-  [key: string]: { title: string; cont: string };
-}
-
-const data: Data = {
-  ISTJ: { title: 'ISTJ', cont: 'ESTJ는 아주 강합니다.' },
-  INTP: { title: 'INTP', cont: 'ESTJ는 아주 강합니다.' },
-  ISFJ: { title: 'ISFJ', cont: 'ESTJ는 아주 강합니다.' },
-  INFJ: { title: 'INFJ', cont: 'ESTJ는 아주 강합니다.' },
-  INTJ: { title: 'INTJ', cont: 'ESTJ는 아주 강합니다.' },
-  ISTP: { title: 'ISTP', cont: 'ESTJ는 아주 강합니다.' },
-  ISFP: { title: 'ISFP', cont: 'ESTJ는 아주 강합니다.' },
-  INFP: { title: 'INFP', cont: 'ESTJ는 아주 강합니다.' },
-  ESFP: { title: 'ESFP', cont: 'ESTJ는 아주 강합니다.' },
-  ENFP: { title: 'ENFP', cont: 'ESTJ는 아주 강합니다.' },
-  ENTP: { title: 'ENTP', cont: 'ESTJ는 아주 강합니다.' },
-  ESTJ: { title: 'ESTJ', cont: 'ESTJ는 아주 강합니다.' },
-  ESFJ: { title: 'ESFJ', cont: 'ESTJ는 아주 강합니다.' },
-  ESTP: { title: 'ESTP', cont: 'ESTJ는 아주 강합니다.' },
-  ENTJ: { title: 'ENTJ', cont: 'ESTJ는 아주 강합니다.' },
-  ENFJ: { title: 'ENFJ', cont: 'ESTJ는 아주 강합니다.' },
-};
 
 function Result(props: ResultProps) {
   const param: any = useParams();
   const navigate = useNavigate();
+  const [data, setData] = useState({
+    type_id: '',
+    type_mbti: '',
+    type_description: '',
+    type_recommendation: '',
+  });
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/api/mbti/${param.mbti}`)
+      .then((Response) => {
+        setData(Response.data[0]);
+        console.log('RES:', Response.data[0]);
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+  }, []);
+
+  console.log('데이터 콘솔로 찍기', data);
+  console.log('데이터 객체 내부 값 콘솔로 찍기', data.type_id);
 
   return (
     <div>
-      <div>{data[param.MBTI].title}</div>
-      <div>{data[param.MBTI].cont}</div>
+      <div>
+        {props.nickname}님의 타입은? {data.type_mbti}
+      </div>
+
+      <div> 유형 설명 : {data.type_description}</div>
       <button
         onClick={() => {
           navigate('/');

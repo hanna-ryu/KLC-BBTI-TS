@@ -6,6 +6,8 @@ interface TestProps {
   setSN: React.Dispatch<React.SetStateAction<number>>;
   setTF: React.Dispatch<React.SetStateAction<number>>;
   setJP: React.Dispatch<React.SetStateAction<number>>;
+  setNickname: React.Dispatch<React.SetStateAction<string>>;
+  nickname: string;
 }
 
 function Main(props: TestProps) {
@@ -13,6 +15,11 @@ function Main(props: TestProps) {
 
   return (
     <div>
+      <input
+        value={props.nickname}
+        onChange={(e) => props.setNickname(e.target.value)}
+      ></input>
+
       <Button
         variant="contained"
         color="error"

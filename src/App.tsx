@@ -18,6 +18,7 @@ function App() {
   const [JP, setJP] = useState<number>(0);
   const [MBTI, setMBTI] = useState<string>('');
   const [datas, setDatas] = useState<string>('');
+  const [nickname, setNickname] = useState<string>('');
 
   useEffect(() => {
     let data: string[] = [];
@@ -55,7 +56,14 @@ function App() {
             <Route
               path="/"
               element={
-                <Main setEI={setEI} setSN={setSN} setTF={setTF} setJP={setJP} />
+                <Main
+                  setEI={setEI}
+                  setSN={setSN}
+                  setTF={setTF}
+                  setJP={setJP}
+                  setNickname={setNickname}
+                  nickname={nickname}
+                />
               }
             />
             <Route
@@ -74,7 +82,10 @@ function App() {
               }
             />
             <Route path="/loading" element={<Loading MBTI={MBTI} />} />
-            <Route path="/resultpage/:MBTI" element={<Result MBTI={MBTI} />} />
+            <Route
+              path={`/resultpage/:mbti`}
+              element={<Result MBTI={MBTI} nickname={nickname} />}
+            />
           </Routes>
         </Layout>
       </CreateGlobalStyle>
