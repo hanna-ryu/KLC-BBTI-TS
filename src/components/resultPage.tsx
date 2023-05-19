@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 
 interface ResultProps {
   MBTI: string;
-  nickname: string;
 }
 
 function Result(props: ResultProps) {
@@ -34,9 +33,7 @@ function Result(props: ResultProps) {
 
   return (
     <div>
-      <div>
-        {props.nickname}님의 타입은? {data.type_mbti}
-      </div>
+      <div>{data.type_mbti}</div>
 
       <div> 유형 설명 : {data.type_description}</div>
       <button

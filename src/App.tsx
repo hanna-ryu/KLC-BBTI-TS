@@ -81,10 +81,13 @@ function App() {
                 />
               }
             />
-            <Route path="/loading" element={<Loading MBTI={MBTI} />} />
             <Route
-              path={`/resultpage/:mbti`}
-              element={<Result MBTI={MBTI} nickname={nickname} />}
+              path="/loading"
+              element={<Loading MBTI={MBTI} nickname={nickname} />}
+            />
+            <Route
+              path={`/resultpage/:mbti/`}
+              element={<Result MBTI={MBTI} />}
             />
           </Routes>
         </Layout>
