@@ -56,4 +56,20 @@ resultRouter.post('/result', (req, res) => {
   });
 });
 
+// 응답 개수 세는 api
+resultRouter.get('/results', async (req, res, next) => {
+  db.query(
+    `SELECT COUNT(*) AS total FROM MBTIResult;`,
+    (error: any, results: any, fields: any) => {
+      if (error) {
+        console.log(error);
+        res.status(500).send('Internal Server Error');
+      } else {
+        console.log(results);
+        res.send(results);
+      }
+    },
+  );
+});
+
 export { resultRouter };

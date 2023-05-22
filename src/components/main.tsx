@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 interface TestProps {
   setEI: React.Dispatch<React.SetStateAction<number>>;
@@ -12,6 +14,19 @@ interface TestProps {
 
 function Main(props: TestProps) {
   const navigate = useNavigate();
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/api/results`)
+      .then((Response: any) => {
+        setCount(Response.data[0].total);
+        console.log('RES:', Response.data[0].total);
+      })
+      .catch((Error: any) => {
+        console.log(Error);
+      });
+  }, []);
 
   return (
     <div>
@@ -33,6 +48,7 @@ function Main(props: TestProps) {
       >
         봉비티아이 테스트 시작!!
       </Button>
+      <p>지금까지 {count}명이 참여했어요.</p>
     </div>
   );
 }

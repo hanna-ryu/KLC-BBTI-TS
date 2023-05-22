@@ -4,6 +4,7 @@ import { Main, Test, Result, Loading } from './components';
 import './App.css';
 import { Layout } from './components/Layout/Layout';
 import { CreateGlobalStyle } from './styles';
+import dotenv from 'dotenv';
 
 function App() {
   const [EI, setEI] = useState<number>(0);
