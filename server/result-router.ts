@@ -20,4 +20,40 @@ resultRouter.get('/mbti/:type', async (req, res, next) => {
   );
 });
 
+resultRouter.post('/result', (req, res) => {
+  const { nickname, mbti_type, date_time } = req.body;
+
+  // MBTIType 테이블에서 mbti_type 검증
+  const mbtiTypeQuery = 'SELECT type_id FROM MBTIType WHERE type_id = ?';
+  db.query(mbtiTypeQuery, [mbti_type], (err: any, results: any) => {
+    if (err) {
+      console.error('쿼리 오류: ' + err.stack);
+      res.sendStatus(500);
+      return;
+    }
+
+    if (results.length === 0) {
+      res.status(400).json({ error: '유효하지 않은 mbti_type입니다.' });
+      return;
+    }
+
+    // MBTIResult 테이블에 새로운 결과 추가
+    const insertQuery =
+      'INSERT INTO MBTIResult (nickname, mbti_type, date_time) VALUES (?, ?, ?)';
+    db.query(
+      insertQuery,
+      [nickname, mbti_type, date_time],
+      (err: any, results: any) => {
+        if (err) {
+          console.error('쿼리 오류: ' + err.stack);
+          res.sendStatus(500);
+          return;
+        }
+
+        res.sendStatus(201);
+      },
+    );
+  });
+});
+
 export { resultRouter };

@@ -28,9 +28,6 @@ function Result(props: ResultProps) {
       });
   }, []);
 
-  console.log('데이터 콘솔로 찍기', data);
-  console.log('데이터 객체 내부 값 콘솔로 찍기', data.type_id);
-
   return (
     <div>
       <div>{data.type_mbti}</div>
