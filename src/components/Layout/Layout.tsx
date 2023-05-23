@@ -23,7 +23,6 @@ const ContentWrapper = styled.div`
 function Layout(props: LayoutProps) {
   return (
     <LayoutContainer>
-      <Header />
       <ContentWrapper>{props.children}</ContentWrapper>
       <Footer />
     </LayoutContainer>

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
+import PacmanLoader from 'react-spinners/PacmanLoader';
 
 interface LoadingProps {
   MBTI: string;
@@ -43,10 +44,22 @@ function Loading(props: LoadingProps) {
 
   setTimeout(() => {
     navigate(`/resultPage/${props.MBTI}`);
-  }, 1500);
+  }, 3000);
   return (
     <div>
-      <h1> {props.nickname} 님의 봉사 유형은..?</h1>
+      <PacmanLoader color="#b38631" size={30} />
+      <h1
+        style={{
+          fontSize: 30,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: '#b38631',
+          textShadow: '1px 2px 1px white',
+        }}
+      >
+        {props.nickname} 님의 봉사 유형은..?
+      </h1>
     </div>
   );
 }

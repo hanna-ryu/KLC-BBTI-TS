@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Main, Test, Result, Loading } from './components';
+import { Main, Test, Result, Loading, Nickname } from './components';
 import './App.css';
 import { Layout } from './components/Layout/Layout';
 import { CreateGlobalStyle } from './styles';
@@ -50,14 +50,13 @@ function App() {
             <Route
               path="/"
               element={
-                <Main
-                  setEI={setEI}
-                  setSN={setSN}
-                  setTF={setTF}
-                  setJP={setJP}
-                  setNickname={setNickname}
-                  nickname={nickname}
-                />
+                <Main setEI={setEI} setSN={setSN} setTF={setTF} setJP={setJP} />
+              }
+            />
+            <Route
+              path="/nickname"
+              element={
+                <Nickname setNickname={setNickname} nickname={nickname} />
               }
             />
             <Route
