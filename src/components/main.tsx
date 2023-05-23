@@ -18,7 +18,7 @@ function Main(props: TestProps) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/results`)
+      .get(`http://52.231.66.105/api/results`)
       .then((Response: any) => {
         setCount(Response.data[0].total);
         console.log('RES:', Response.data[0].total);

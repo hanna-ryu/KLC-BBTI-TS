@@ -21,7 +21,7 @@ function Loading(props: LoadingProps) {
   // `http://localhost:3001/api/result` api post 요청 필요.
 
   useEffect(() => {
-    const url = 'http://localhost:3001/api/result';
+    const url = 'http://52.231.66.105/api/result';
 
     const data = {
       nickname: props.nickname,
