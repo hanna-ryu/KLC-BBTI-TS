@@ -15,7 +15,7 @@ const db = mysql.createConnection({
   database: process.env.MYSQL_DATABASE,
 });
 
-console.log(__dirname)
+console.log(__dirname);
 
 db.connect(() => console.log('DB연결에 성공했습니다! 🍒', __dirname));
 db.on('error', (error: any) =>
@@ -23,7 +23,7 @@ db.on('error', (error: any) =>
 );
 
 const app: Application = express();
-const port: number = 5000;
+const port: number = 3001;
 app.use(cors());
 app.use(express.json());
 
@@ -33,8 +33,7 @@ app.get('/', function (요청, 응답) {
   응답.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
-
-app.listen(port, "0.0.0.0", function () {
+app.listen(port, '0.0.0.0', function () {
   console.log(`App is listening on port ${port} !`);
 });
 

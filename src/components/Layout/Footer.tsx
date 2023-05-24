@@ -10,7 +10,7 @@ function Footer() {
             textAlign: 'center',
           }}
         >
-          <span>copyright : KoreaLegacyCommittee 김시연, 류한나</span>
+          <span>제작 : KoreaLegacyCommittee 기획: 김시연, 개발: 류한나</span>
         </ul>
       </footer>
     </>
