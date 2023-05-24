@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Button, ThemeProvider, createTheme } from '@mui/material';
-import {handleOpenNewTab} from './utils/handleOpenNewTap';
+import { handleOpenNewTab } from './utils/handleOpenNewTap';
 import { volunteer } from './utils/volunteerData';
 interface ResultProps {
   MBTI: string;
@@ -15,6 +15,8 @@ interface ResultProps {
 //   img: string;
 // }
 
+const randomIndex = Math.floor(Math.random() * volunteer.length); // 랜덤으로 인덱스 선택
+const randomVolunteer = volunteer[randomIndex];
 
 const theme = createTheme({
   palette: {
@@ -27,7 +29,7 @@ const theme = createTheme({
 
 function Result(props: ResultProps) {
   const param: any = useParams();
-  console.log(param)
+  console.log(param);
   const navigate = useNavigate();
   const [data, setData] = useState({
     type_id: '',
@@ -35,7 +37,6 @@ function Result(props: ResultProps) {
     type_description: '',
     type_recommendation: '',
   });
-
 
   useEffect(() => {
     axios
@@ -49,9 +50,8 @@ function Result(props: ResultProps) {
       });
   }, []);
 
-
   // const [volunteer, setVolunteer] = useState<Volunteer[]>([]);
-  
+
   // useEffect(() => {
   //   axios
   //     .get(`http://52.231.66.105/api/volunteer`)
@@ -64,59 +64,51 @@ function Result(props: ResultProps) {
   //     });
   // }, []);
 
-
-
-
   return (
     <div
       style={{
+        width: 330,
         display: 'flex',
+        top: 0,
         flexDirection: 'column',
         justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <div
         style={{
           width: '100vw',
-          height: '145px',
+          height: '30px',
           backgroundColor: '#B38631',
-          textAlign: 'center',
           position: 'absolute',
           top: 0,
-          left: 0,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+        }}
+      ></div>
+      <div
+        style={{
+          fontSize: 20,
+          color: '#B38631',
+          fontWeight: 'bold',
+          textAlign: 'center',
         }}
       >
-        <span
-          style={{
-            fontSize: 50,
-            color: 'white',
-          }}
-        >
-          타입 : {data.type_mbti} 입니다.
-        </span>
+        <br /> {data.type_mbti} 입니다.
       </div>
       <div>
-        <div>
-          유형 설명 : {data.type_description} 유형은 어쩌구저쩌국ㅈ가저거주 한
-          타입입니다.
+        <div style={{ textAlign: 'center' }}>{data.type_description}</div>
+        <div style={{ textAlign: 'center' }}>
+          추천 봉사지: {randomVolunteer.volunteer_name}
         </div>
-        <div>
-              <div>
-                추천 봉사지: {volunteer[0].volunteer_name}
-              </div>
-              <div>
-                추천 봉사지 주소: {volunteer[0].volunteer_location}
-              </div>
-              <div>
-                추천 봉사처 유형: {volunteer[0].volunteer_type}
-              </div>
-              <div>
-                추천 봉사지 이미지: {volunteer[0].img}
-              </div>
-        </div>
+        <img
+          src={randomVolunteer.img}
+          alt="volunteerimage"
+          style={{
+            borderRadius: 20,
+            width: 300,
+            display: 'flex',
+            margin: '7%',
+          }}
+        />
         <ThemeProvider theme={theme}>
           <div
             style={{ display: 'flex', justifyContent: 'center', width: 350 }}
@@ -128,12 +120,12 @@ function Result(props: ResultProps) {
               style={{
                 color: 'white',
                 width: '165px',
-                height: '50px',
+                height: '40px',
                 fontSize: 15,
                 fontWeight: 'bold',
                 borderRadius: 30,
                 marginTop: 10,
-                marginBottom: 10,
+                marginBottom: 5,
                 padding: '10 ',
               }}
             >
@@ -146,12 +138,12 @@ function Result(props: ResultProps) {
               style={{
                 color: 'white',
                 width: '165px',
-                height: '50px',
+                height: '40px',
                 fontSize: 15,
                 fontWeight: 'bold',
                 borderRadius: 30,
                 marginTop: 10,
-                marginBottom: 10,
+                marginBottom: 5,
                 padding: '10 ',
               }}
               onClick={() => {
@@ -164,7 +156,7 @@ function Result(props: ResultProps) {
           <div
             style={{
               width: 350,
-              height: 200,
+              height: 150,
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -180,7 +172,7 @@ function Result(props: ResultProps) {
                 style={{
                   color: 'white',
                   width: '150px',
-                  height: '50px',
+                  height: '40px',
                   fontSize: 15,
                   fontWeight: 'bold',
                   borderRadius: 30,
@@ -203,7 +195,7 @@ function Result(props: ResultProps) {
                 style={{
                   color: 'white',
                   width: '180px',
-                  height: '50px',
+                  height: '40px',
                   fontSize: 15,
                   fontWeight: 'bold',
                   borderRadius: 30,
@@ -225,12 +217,12 @@ function Result(props: ResultProps) {
               style={{
                 color: 'white',
                 width: '330px',
-                height: '50px',
+                height: '40px',
                 fontSize: 15,
                 fontWeight: 'bold',
                 borderRadius: 30,
-                marginTop: 10,
-                marginBottom: 10,
+                marginTop: 5,
+                marginBottom: 5,
                 padding: '10 ',
               }}
               onClick={() => {
