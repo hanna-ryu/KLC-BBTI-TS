@@ -8,7 +8,7 @@ import mime from 'mime';
 dotenv.config({ path: '/home/azureuser/KLC-BBTI-TS/.env' });
 
 const app: Application = express();
-const port: number = 3001;
+const port: number = 5000;
 app.use(cors());
 app.use(express.json());
 

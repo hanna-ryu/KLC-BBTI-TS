@@ -4,6 +4,7 @@ import { Main, Test, Result, Loading, Nickname } from './components';
 import './App.css';
 import { Layout } from './components/Layout/Layout';
 import { CreateGlobalStyle } from './styles';
+import axios from 'axios';
 
 function App() {
   const [EI, setEI] = useState<number>(0);
@@ -13,6 +14,28 @@ function App() {
   const [MBTI, setMBTI] = useState<string>('');
   const [datas, setDatas] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
+  const [volunteer, setVolunteer] = useState<Volunteer[]>([]);
+
+
+  interface Volunteer {
+    volunteer_name: string;
+    volunteer_location: string;
+    volunteer_type: string;
+    img: string;
+  }
+  
+  useEffect(() => {
+    axios
+      .get(`http://52.231.66.105/api/volunteer`)
+      .then((Response) => {
+        setVolunteer(Response.data[0]);
+        console.log('VOL:', Response.data[0]);
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+  }, []);
+
 
   useEffect(() => {
     let data: string[] = [];

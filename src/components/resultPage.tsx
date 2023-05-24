@@ -2,10 +2,19 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Button, ThemeProvider, createTheme } from '@mui/material';
-
+import {handleOpenNewTab} from './utils/handleOpenNewTap';
+import { volunteer } from './utils/volunteerData';
 interface ResultProps {
   MBTI: string;
 }
+
+// interface Volunteer {
+//   volunteer_name: string;
+//   volunteer_location: string;
+//   volunteer_type: string;
+//   img: string;
+// }
+
 
 const theme = createTheme({
   palette: {
@@ -27,6 +36,7 @@ function Result(props: ResultProps) {
     type_recommendation: '',
   });
 
+
   useEffect(() => {
     axios
       .get(`http://52.231.66.105/api/mbti/${param.mbti}`)
@@ -39,9 +49,23 @@ function Result(props: ResultProps) {
       });
   }, []);
 
-  const handleOpenNewTab = (url: string) => {
-    window.open(url, '_blank', 'noopener, noreferrer');
-  };
+
+  // const [volunteer, setVolunteer] = useState<Volunteer[]>([]);
+  
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://52.231.66.105/api/volunteer`)
+  //     .then((Response) => {
+  //       setVolunteer(Response.data[0]);
+  //       console.log('VOL:',volunteer);
+  //     })
+  //     .catch((Error) => {
+  //       console.log(Error);
+  //     });
+  // }, []);
+
+
+
 
   return (
     <div
@@ -54,34 +78,45 @@ function Result(props: ResultProps) {
       <div
         style={{
           width: '100vw',
-          height: '100px',
+          height: '145px',
           backgroundColor: '#B38631',
           textAlign: 'center',
           position: 'absolute',
           top: 0,
           left: 0,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      ></div>
-      <div>
-        <div
+      >
+        <span
           style={{
-            fontSize: 30,
-            color: '#B38631',
+            fontSize: 50,
+            color: 'white',
           }}
         >
           타입 : {data.type_mbti} 입니다.
-        </div>
+        </span>
+      </div>
+      <div>
         <div>
           유형 설명 : {data.type_description} 유형은 어쩌구저쩌국ㅈ가저거주 한
           타입입니다.
         </div>
         <div>
-          <img src="/WooYang.jpg" alt="우양재단 봉사사진"></img>
-          <p>
-            추천 봉사지 : {data.type_description} 추천 봉사지는 ㅁㄴㅇㄹ입니다.
-          </p>
+              <div>
+                추천 봉사지: {volunteer[0].volunteer_name}
+              </div>
+              <div>
+                추천 봉사지 주소: {volunteer[0].volunteer_location}
+              </div>
+              <div>
+                추천 봉사처 유형: {volunteer[0].volunteer_type}
+              </div>
+              <div>
+                추천 봉사지 이미지: {volunteer[0].img}
+              </div>
         </div>
-
         <ThemeProvider theme={theme}>
           <div
             style={{ display: 'flex', justifyContent: 'center', width: 350 }}
@@ -102,7 +137,7 @@ function Result(props: ResultProps) {
                 padding: '10 ',
               }}
             >
-              🔗 링크 복사하기
+              링크 복사하기❤️
             </Button>
             <Button
               variant="contained"
@@ -123,7 +158,7 @@ function Result(props: ResultProps) {
                 navigate('/');
               }}
             >
-              🔁 테스트 다시하기
+              테스트 다시하기✌️
             </Button>
           </div>
           <div

@@ -16,4 +16,4 @@ function CopyLinkButton() {
   return <button onClick={copyLink}>링크 복사</button>;
 }
 
-export default CopyLinkButton;
+export  {CopyLinkButton};
