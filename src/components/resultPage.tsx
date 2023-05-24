@@ -8,6 +8,7 @@ interface ResultProps {
 
 function Result(props: ResultProps) {
   const param: any = useParams();
+  console.log(param)
   const navigate = useNavigate();
   const [data, setData] = useState({
     type_id: '',
@@ -18,7 +19,7 @@ function Result(props: ResultProps) {
 
   useEffect(() => {
     axios
-      .get(`hhttp://52.231.66.105/api/mbti/${param.mbti}`)
+      .get(`http://52.231.66.105/api/mbti/${param.mbti}`)
       .then((Response) => {
         setData(Response.data[0]);
         console.log('RES:', Response.data[0]);

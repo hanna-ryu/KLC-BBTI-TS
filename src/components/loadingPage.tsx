@@ -39,7 +39,6 @@ function Loading(props: LoadingProps) {
       });
   }, [props.nickname, props.MBTI]);
 
-  //여기서 포스트 요청해서 mySQL에  데이터 전송 필요함!!!
 
   setTimeout(() => {
     navigate(`/resultPage/${props.MBTI}`);
