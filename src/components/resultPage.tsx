@@ -86,18 +86,27 @@ function Result(props: ResultProps) {
       ></div>
       <div
         style={{
-          fontSize: 20,
+          fontSize: 26,
           color: '#B38631',
           fontWeight: 'bold',
           textAlign: 'center',
         }}
       >
-        <br /> {data.type_mbti} 입니다.
+        <br /> {data.type_mbti}
       </div>
       <div>
-        <div style={{ textAlign: 'center' }}>{data.type_description}</div>
-        <div style={{ textAlign: 'center' }}>
-          추천 봉사지: {randomVolunteer.volunteer_name}
+        <div style={{ textAlign: 'center', marginTop: '10px' }}>
+          {data.type_description}{' '}
+        </div>
+        <div
+          style={{
+            borderTop: '1.5px dotted #B38631',
+            margin: '10px auto',
+            width: '330px',
+          }}
+        ></div>
+        <div style={{ textAlign: 'center', fontSize: '20px' }}>
+          추천 봉사지는 👉 [ {randomVolunteer.volunteer_name} 🏃‍♀️]
         </div>
         <img
           src={randomVolunteer.img}
@@ -163,6 +172,13 @@ function Result(props: ResultProps) {
               alignItems: 'center',
             }}
           >
+            <div
+              style={{
+                borderTop: '1.5px dotted #B38631',
+                margin: '15px auto',
+                width: '330px',
+              }}
+            ></div>
             <div style={{ textAlign: 'center' }}>KLC를 통해 할 수 있어요!</div>
             <div>
               <Button
