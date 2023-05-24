@@ -7,6 +7,11 @@ import path from 'path';
 import mime from 'mime';
 dotenv.config({ path: '/home/azureuser/KLC-BBTI-TS/.env' });
 
+const app: Application = express();
+const port: number = 3001;
+app.use(cors());
+app.use(express.json());
+
 const db = mysql.createConnection({
   host: 'localhost',
   port: 3306,
@@ -21,11 +26,6 @@ db.connect(() => console.log('DB연결에 성공했습니다! 🍒', __dirname))
 db.on('error', (error: any) =>
   console.error('db 연결에 에러가 발생했습니다ㅠㅠ 🚒', error),
 );
-
-const app: Application = express();
-const port: number = 3001;
-app.use(cors());
-app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '../build')));
 

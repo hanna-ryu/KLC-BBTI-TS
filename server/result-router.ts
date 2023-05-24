@@ -72,4 +72,20 @@ resultRouter.get('/results', async (req, res, next) => {
   );
 });
 
+// 봉사처 가져오는 api
+resultRouter.get('/volunteer', async (req, res, next) => {
+  db.query(
+    'SELECT * FROM Volunteer;',
+    (error: any, results: any, fields: any) => {
+      if (error) {
+        console.log(error);
+        res.status(500).send('Internal Server Error');
+      } else {
+        console.log(results);
+        res.send(results);
+      }
+    },
+  );
+});
+
 export { resultRouter };
