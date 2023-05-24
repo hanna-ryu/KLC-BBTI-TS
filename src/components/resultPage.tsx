@@ -37,6 +37,7 @@ function Result(props: ResultProps) {
     type_description: '',
     type_recommendation: '',
   });
+  const [error, setError] = useState<string | null>(null); // 에러 상태 추가
 
   useEffect(() => {
     axios
@@ -47,22 +48,13 @@ function Result(props: ResultProps) {
       })
       .catch((Error) => {
         console.log(Error);
+        setError('잠시 문제가 생겼어요! 새로고침을 해주세요 🥲'); // 에러 메시지 설정
       });
   }, []);
 
-  // const [volunteer, setVolunteer] = useState<Volunteer[]>([]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://52.231.66.105/api/volunteer`)
-  //     .then((Response) => {
-  //       setVolunteer(Response.data[0]);
-  //       console.log('VOL:',volunteer);
-  //     })
-  //     .catch((Error) => {
-  //       console.log(Error);
-  //     });
-  // }, []);
+  if (!data || !data.type_mbti || !data.type_description) {
+    return <div>잠시 문제가 생겼어요! 새로고침을 해주세요 🥲</div>;
+  }
 
   return (
     <div

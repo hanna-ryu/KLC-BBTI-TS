@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import PacmanLoader from 'react-spinners/PacmanLoader';
 
 interface LoadingProps {
@@ -18,8 +18,6 @@ function getCurrentTime() {
 
 function Loading(props: LoadingProps) {
   const navigate = useNavigate();
-
-  // `http://localhost:3001/api/result` api post 요청 필요.
 
   useEffect(() => {
     const url = 'http://52.231.66.105/api/result';
@@ -39,7 +37,6 @@ function Loading(props: LoadingProps) {
         console.error('요청 실패:', error.message);
       });
   }, [props.nickname, props.MBTI]);
-
 
   setTimeout(() => {
     navigate(`/resultPage/${props.MBTI}`);
