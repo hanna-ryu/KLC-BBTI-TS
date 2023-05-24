@@ -43,60 +43,75 @@ function Result(props: ResultProps) {
   };
 
   return (
-    <div>
-      <div>{data.type_mbti}</div>
-
-      <div> 유형 설명 : {data.type_description}</div>
-      <ThemeProvider theme={theme}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}
+    >
+      <div
+        style={{
+          width: '100vw',
+          height: '145px',
+          backgroundColor: '#B38631',
+          textAlign: 'center',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <span
+          style={{
+            fontSize: 50,
+            color: 'white',
+          }}
+        >
+          타입 : {data.type_mbti} 입니다.
+        </span>
+      </div>
+      <div>
         <div>
-          <Button
-            variant="contained"
-            //@ts-ignore
-            color="customColor"
-            style={{
-              color: 'white',
-              width: '150px',
-              height: '50px',
-              fontSize: 15,
-              fontWeight: 'bold',
-              borderRadius: 30,
-              marginTop: 10,
-              marginBottom: 10,
-              padding: '10 ',
-            }}
+          유형 설명 : {data.type_description} 유형은 어쩌구저쩌국ㅈ가저거주 한
+          타입입니다.
+        </div>
+        <div>
+          {' '}
+          추천 봉사지 : {data.type_description} 추천 봉사지는 ㅁㄴㅇㄹ입니다.{' '}
+        </div>
+
+        <ThemeProvider theme={theme}>
+          <div
+            style={{ display: 'flex', justifyContent: 'center', width: 350 }}
           >
-            링크복사하기
-          </Button>
-          <Button
-            variant="contained"
-            //@ts-ignore
-            color="customColor"
-            style={{
-              color: 'white',
-              width: '150px',
-              height: '50px',
-              fontSize: 15,
-              fontWeight: 'bold',
-              borderRadius: 30,
-              marginTop: 10,
-              marginBottom: 10,
-              padding: '10 ',
-            }}
-            onClick={() => {
-              navigate('/');
-            }}
-          >
-            테스트 다시하기
-          </Button>
-          <div style={{ width: 350, height: 200 }}>
-            <div>KLC를 통해 할 수 있어요!</div>
             <Button
               variant="contained"
               //@ts-ignore
               color="customColor"
               style={{
                 color: 'white',
-                width: '150px',
+                width: '165px',
+                height: '50px',
+                fontSize: 15,
+                fontWeight: 'bold',
+                borderRadius: 30,
+                marginTop: 10,
+                marginBottom: 10,
+                padding: '10 ',
+              }}
+            >
+              링크 복사하기❤️
+            </Button>
+            <Button
+              variant="contained"
+              //@ts-ignore
+              color="customColor"
+              style={{
+                color: 'white',
+                width: '165px',
                 height: '50px',
                 fontSize: 15,
                 fontWeight: 'bold',
@@ -106,34 +121,69 @@ function Result(props: ResultProps) {
                 padding: '10 ',
               }}
               onClick={() => {
-                handleOpenNewTab(
-                  'https://booking.naver.com/booking/12/bizes/430023',
-                );
+                navigate('/');
               }}
             >
-              봉케팅 하기💪
+              테스트 다시하기✌️
             </Button>
-            <Button
-              variant="contained"
-              //@ts-ignore
-              color="customColor"
-              style={{
-                color: 'white',
-                width: '180px',
-                height: '50px',
-                fontSize: 15,
-                fontWeight: 'bold',
-                borderRadius: 30,
-                marginTop: 10,
-                marginBottom: 10,
-                padding: '10 ',
-              }}
-              onClick={() => {
-                handleOpenNewTab('https://www.instagram.com/korealegacy/');
-              }}
-            >
-              인스타그램 구경가기👀
-            </Button>
+          </div>
+          <div
+            style={{
+              width: 350,
+              height: 200,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <div style={{ textAlign: 'center' }}>KLC를 통해 할 수 있어요!</div>
+            <div>
+              <Button
+                variant="contained"
+                //@ts-ignore
+                color="customColor"
+                style={{
+                  color: 'white',
+                  width: '150px',
+                  height: '50px',
+                  fontSize: 15,
+                  fontWeight: 'bold',
+                  borderRadius: 30,
+                  marginTop: 10,
+                  marginBottom: 10,
+                  padding: '10 ',
+                }}
+                onClick={() => {
+                  handleOpenNewTab(
+                    'https://booking.naver.com/booking/12/bizes/430023',
+                  );
+                }}
+              >
+                봉케팅 하기💪
+              </Button>
+              <Button
+                variant="contained"
+                //@ts-ignore
+                color="customColor"
+                style={{
+                  color: 'white',
+                  width: '180px',
+                  height: '50px',
+                  fontSize: 15,
+                  fontWeight: 'bold',
+                  borderRadius: 30,
+                  marginTop: 10,
+                  marginBottom: 10,
+                  padding: '10 ',
+                }}
+                onClick={() => {
+                  handleOpenNewTab('https://www.instagram.com/korealegacy/');
+                }}
+              >
+                인스타그램 구경가기👀
+              </Button>
+            </div>
             <Button
               variant="contained"
               //@ts-ignore
@@ -158,8 +208,8 @@ function Result(props: ResultProps) {
               단돈 1만원으로 도시락 5인분 기부하기 🍱
             </Button>
           </div>
-        </div>
-      </ThemeProvider>
+        </ThemeProvider>
+      </div>
     </div>
   );
 }

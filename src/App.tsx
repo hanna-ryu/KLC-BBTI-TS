@@ -42,6 +42,15 @@ function App() {
     setMBTI(joinedData);
   }, [EI, SN, TF, JP, datas]);
 
+  //@ts-ignore
+  // function SetScreenSize(): void {
+  //   let vh = window.innerHeight * 0.01;
+  //   document.documentElement.style.setProperty('--vh', `${vh}px`);
+  // }
+  // useEffect(() => {
+  //   SetScreenSize();
+  // });
+
   return (
     <BrowserRouter>
       <CreateGlobalStyle>

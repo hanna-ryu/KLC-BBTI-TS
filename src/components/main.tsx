@@ -51,7 +51,7 @@ function Main(props: TestProps) {
       >
         <h1
           style={{
-            fontSize: 70,
+            fontSize: 60,
             display: 'flex',
             justifyContent: 'center',
             color: '#b38631',
