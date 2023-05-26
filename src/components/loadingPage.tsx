@@ -16,28 +16,39 @@ function getCurrentTime() {
   return currentTime;
 }
 
+
+async function sendData(url: string, data: any) {
+  try {
+    const response = await axios.post(url, data);
+    console.log('요청 성공:', response.status);
+  } catch (error : any ) {
+    console.error('요청 실패:', error.message);
+  }
+}
+
 function Loading(props: LoadingProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = 'http://52.231.66.105/api/result';
+    const sendDataToServer = async () => {
+      const url = 'http://52.231.66.105/api/result';
 
-    const data = {
-      nickname: props.nickname,
-      mbti_type: props.MBTI,
-      date_time: getCurrentTime(),
+      const data = {
+        nickname: props.nickname,
+        mbti_type: props.MBTI,
+        date_time: getCurrentTime(),
+      };
+
+      try {
+        await sendData(url, data);
+      } catch (error) {
+        console.log('Error sending data:', error);
+      }
     };
 
-    axios
-      .post(url, data)
-      .then((response) => {
-        console.log('요청 성공:', response.status);
-      })
-      .catch((error) => {
-        console.error('요청 실패:', error.message);
-      });
+    sendDataToServer();
   }, [props.nickname, props.MBTI]);
-
+  
   setTimeout(() => {
     navigate(`/resultPage/${props.MBTI}`);
   }, 3000);

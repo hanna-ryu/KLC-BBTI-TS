@@ -3,7 +3,11 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Button, ThemeProvider, createTheme } from '@mui/material';
 import { handleOpenNewTab } from './utils/handleOpenNewTap';
+import {handleCopyClipBoard} from  './utils/handleCopyLink'
 import { volunteer } from './utils/volunteerData';
+import { useLocation } from "react-router-dom";
+
+
 interface ResultProps {
   MBTI: string;
 }
@@ -17,7 +21,6 @@ interface ResultProps {
 
 const randomIndex = Math.floor(Math.random() * volunteer.length); // 랜덤으로 인덱스 선택
 const randomVolunteer = volunteer[randomIndex];
-
 const theme = createTheme({
   palette: {
     //@ts-ignore
@@ -26,6 +29,18 @@ const theme = createTheme({
     },
   },
 });
+
+
+
+async function fetchData(mbti: string) {
+  try {
+    const response = await axios.get(`http://52.231.66.105/api/mbti/${mbti}`);
+    return response.data[0];
+  } catch (error) {
+    throw new Error('잠시 문제가 생겼어요! 새로고침을 해주세요 🥲');
+  }
+}
+
 
 function Result(props: ResultProps) {
   const param: any = useParams();
@@ -40,21 +55,27 @@ function Result(props: ResultProps) {
   const [error, setError] = useState<string | null>(null); // 에러 상태 추가
 
   useEffect(() => {
-    axios
-      .get(`http://52.231.66.105/api/mbti/${param.mbti}`)
-      .then((Response) => {
-        setData(Response.data[0]);
-        console.log('RES:', Response.data[0]);
-      })
-      .catch((Error) => {
-        console.log(Error);
-        setError('잠시 문제가 생겼어요! 새로고침을 해주세요 🥲'); // 에러 메시지 설정
-      });
+    const fetchDataAndSetData = async () => {
+      try {
+        if (param.mbti !== undefined) {
+          const fetchedData = await fetchData(param.mbti);
+          setData(fetchedData);
+          console.log('RES:', fetchedData);
+        }
+      } catch (error: any) {
+        console.log(error);
+        setError(error.message);
+      }
+    };
+
+    fetchDataAndSetData();
   }, []);
 
-  if (!data || !data.type_mbti || !data.type_description) {
-    return <div>잠시 문제가 생겼어요! 새로고침을 해주세요 🥲</div>;
-  }
+
+  // if (!data || !data.type_mbti || !data.type_description) {
+  //   return <div>잠시 문제가 생겼어요! 새로고침을 해주세요 🥲</div>;
+  // }
+  const location = useLocation();
 
   return (
     <div
@@ -76,20 +97,36 @@ function Result(props: ResultProps) {
           top: 0,
         }}
       ></div>
-      <div
-        style={{
-          fontSize: 26,
-          color: '#B38631',
-          fontWeight: 'bold',
-          textAlign: 'center',
-        }}
-      >
-        <br /> {data.type_mbti}
-      </div>
+        { data && data.type_mbti && data.type_description ? (
+          <div
+            style={{
+              fontSize: 26,
+              color: '#B38631',
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }}
+          >
+            <br /> {data.type_mbti}
+          </div>
+        ) : (
+          <div
+            style={{
+              fontSize: 15,
+              color: 'black',
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }}
+          >
+            정보를 불러오는 KLC 요정이 길을 헤매고 있어요!🧚‍♀️ 새로고침을 해주세요!
+          </div>
+        )}
+
       <div>
+      { data && data.type_mbti && data.type_description && (
         <div style={{ textAlign: 'center', marginTop: '10px' }}>
-          {data.type_description}{' '}
+          {data.type_description}
         </div>
+        )}
         <div
           style={{
             borderTop: '1.5px dotted #B38631',
@@ -128,7 +165,9 @@ function Result(props: ResultProps) {
                 marginTop: 10,
                 marginBottom: 5,
                 padding: '10 ',
+                
               }}
+              onClick={() => handleCopyClipBoard(`http://52.231.66.105/${location.pathname}`)}
             >
               링크 복사하기❤️
             </Button>
